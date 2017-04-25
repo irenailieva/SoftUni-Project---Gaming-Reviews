@@ -106,4 +106,9 @@ public class User {
 
         return Objects.equals(this.getId(), review.getAuthor().getId());
     }
+
+    @Transient
+    public int getReviewCount() {
+        return this.reviews.size();
+    }
 }

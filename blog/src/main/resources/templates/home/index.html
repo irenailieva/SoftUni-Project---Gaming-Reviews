@@ -1,6 +1,14 @@
 <main xmlns:th="http://www.w3.org/1999/html">
     <div class="container body-content">
 
+        <div class="jumbotron">
+            <h1 class="text-center">Reviews on the Latest Games</h1>
+            <p class="lead text-center">Hear what your fellow gamers have to say!</p>
+            <p class="text-center">
+                <a th:href="@{/review/create}" class="btn btn-success btn-lg">Share Your Opinion</a>
+                <a th:href="@{/all-reviews}" class="btn btn-primary btn-lg">Read Reviews</a>
+            </p>
+        </div>
 
         <div class="row">
             <th:fieldset th:each="review : ${reviews}">
