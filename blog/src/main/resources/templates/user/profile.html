@@ -1,5 +1,30 @@
 <main>
 
+    <div class="container body-container jumbotron">
+        <div class="row">
+            <div id="main" class="col-md-12">
+                <div>
+                    <h2 class="text-center" th:inline="text"><b>Hello, [[${user.fullName}]]! ([[${user.email}]])</b></h2>
+
+                    <h2 class="text-center" th:if="${user.reviewCount > 1}" th:inline="text">
+                        You've published <b>[[${user.reviewCount}]]</b> reviews:
+                    </h2>
+
+                    <div class="text-center" th:if="${user.reviewCount == 0}">
+                        <h2>You haven't reviewed any games.</h2>
+                        <br/>
+                        <a th:href="@{/review/create}" class="btn btn-success btn-lg">Write a Review</a>
+                    </div>
+
+                    <h2 class="text-center" th:if="${user.reviewCount == 1}" th:inline="text">
+                        You've published 1 review:
+                    </h2>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container body-content">
         <div class="row">
             <th:block th:each="review : ${reviews}">
