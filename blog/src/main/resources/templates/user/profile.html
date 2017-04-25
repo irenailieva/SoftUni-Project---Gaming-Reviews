@@ -1,0 +1,43 @@
+<main>
+
+    <div class="container body-content">
+        <div class="row">
+            <th:block th:each="review : ${reviews}">
+                <div class="col-md-6" style="padding-top: 10px; padding-bottom: 30px">
+
+                    <a th:href="@{/review/{id}(id=${review.id})}">
+                        <div class="col-sm-4" style="padding-top: 5px">
+                            <img th:src="${review.imageUrl}" class="img-responsive"/>
+                        </div>
+                    </a>
+
+                    <review class="col-sm-8">
+                        <header>
+                            <a th:href="@{/review/{id}(id=${review.id})}">
+                                <div>
+                                    <span style="font-size: 30px" th:inline="text">[[${review.title}]]</span>
+                                </div>
+                            </a>
+                            <h3 th:inline="text">[[${review.score}]] / 10</h3>
+                        </header>
+
+                        <p th:inline="text">
+                            [[${review.summary}]]
+                        </p>
+
+                        <small class="author" th:text="${review.author.fullName}"></small>
+                    </review>
+
+                    <footer>
+
+                        <div class="pull-right" style="padding-right: 15px">
+                            <a class="btn btn-default btn-sm"
+                               th:href="@{/review/{id}(id=${review.id})}">More &raquo;</a>
+                        </div>
+                    </footer>
+
+                </div>
+            </th:block>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,37 @@
+<main>
+    <div class="container body-content jumbotron">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="col-md-3">
+                    <img th:src="${review.imageUrl}" class="img-responsive" style="padding-top: 15px"/>
+                </div>
+
+                <review class="col-md-9">
+                    <header>
+                        <h2 th:text="${review.title}"></h2>
+                        <h3 th:inline="text">[[${review.score}]] / 10</h3>
+                    </header>
+
+                    <p th:text="${review.content}"> </p>
+
+                    <small class="author" th:text="${review.author.fullName}"></small>
+
+                    <footer>
+
+                        <div class="pull-right" id="buttons" style="padding-top: 25px">
+
+                            <th:block sec:authorize="isAuthenticated()" th:if="${user.isAdmin() OR user.isAuthor(review)}">
+                                <a class="btn btn-success btn" th:href="@{/review/edit/{id}(id = ${review.id})}">Edit</a>
+                                <a class="btn btn-danger btn-" th:href="@{/review/delete/{id}(id = ${review.id})}">Delete</a>
+                            </th:block>
+
+                            <a class="btn btn-default btn" th:href="@{/}">Back &raquo;</a>
+
+                        </div>
+                    </footer>
+                </review>
+            </div>
+        </div>
+    </div>
+</main>
