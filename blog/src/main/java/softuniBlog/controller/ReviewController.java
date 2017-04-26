@@ -44,8 +44,6 @@ public class ReviewController {
 
         User userEntity = this.userRepository.findByEmail(user.getUsername());
 
-        String[] tags = reviewBindingModel.getTags().split("#");
-
         Review review = new Review(
                 reviewBindingModel.getTitle(),
                 reviewBindingModel.getScore(),
@@ -53,7 +51,7 @@ public class ReviewController {
                 reviewBindingModel.getContent(),
                 userEntity,
                 0,
-                reviewBindingModel.getTags());
+                reviewBindingModel.getTags().toLowerCase());
 
         reviewRepository.saveAndFlush(review);
 
