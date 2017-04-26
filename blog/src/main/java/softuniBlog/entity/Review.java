@@ -24,6 +24,8 @@ public class Review {
 
     private User author;
 
+    private int upvoteCount;
+
     @Transient
     public String getSummary() {
         if (this.getContent().length() > 140) {
@@ -34,7 +36,7 @@ public class Review {
         }
     }
 
-    public Review(String title, int score, String imageUrl, String content, User author) {
+    public Review(String title, int score, String imageUrl, String content, User author, int upvoteCount) {
 
         this.title = title;
         this.score = score;
@@ -42,6 +44,7 @@ public class Review {
         this.content = content;
         this.author = author;
         this.date = new Date();
+        this.upvoteCount = upvoteCount;
     }
 
     public Review() {}
@@ -104,5 +107,10 @@ public class Review {
     public void setAuthor(User author) {
         this.author = author;
     }
+
+    @Column(name = "upvoteCount")
+    public int getUpvoteCount() { return upvoteCount; }
+
+    public void setUpvoteCount(int upvoteCount) { this.upvoteCount = upvoteCount; }
 }
 

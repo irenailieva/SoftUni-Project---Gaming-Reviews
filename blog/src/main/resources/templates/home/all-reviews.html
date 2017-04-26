@@ -18,7 +18,7 @@
                                 <a th:href="@{/review/{id}(id=${review.id})}">
                                     <span style="font-size: 30px" th:inline="text">[[${review.title}]]</span>
                                 </a>
-
+                                <span style="font-size: 30px; padding-top: 3px" class="pull-right text-center" id="circle" th:inline="text"><b>[[${review.upvoteCount}]]</b></span>
                             </div>
                             <h3 th:inline="text">[[${review.score}]] / 10</h3>
                         </header>

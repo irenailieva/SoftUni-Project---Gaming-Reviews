@@ -52,7 +52,8 @@ public class ReviewController {
                 reviewBindingModel.getScore(),
                 reviewBindingModel.getImageUrl(),
                 reviewBindingModel.getContent(),
-                userEntity);
+                userEntity,
+                0);
 
         reviewRepository.saveAndFlush(review);
 
@@ -167,6 +168,25 @@ public class ReviewController {
         this.reviewRepository.delete(review);
 
         return "redirect:/";
+    }
+
+    @PostMapping("review/{id}")
+    public String upvoteProcess(@PathVariable int id) {
+
+        UserDetails principal = (UserDetails) SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getPrincipal();
+
+        User user = this.userRepository.findByEmail(principal.getUsername());
+        Review review = this.reviewRepository.findOne(id);
+
+        user.addUpvotedReview(review);
+        review.setUpvoteCount(review.getUpvoteCount() + 1);
+
+        this.userRepository.saveAndFlush(user);
+        this.reviewRepository.saveAndFlush(review);
+
+        return "redirect:/review/" + review.getId();
     }
 
     private boolean isReviewAuthorOrAdmin(Review review) {

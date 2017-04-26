@@ -21,6 +21,8 @@ public class User {
 
     private Set<Review> reviews;
 
+    private Set<Review> upvotedReviews;
+
     public User(String email, String fullName, String password) {
         this.email = email;
         this.password = password;
@@ -28,12 +30,14 @@ public class User {
 
         this.roles = new HashSet<>();
         this.reviews = new HashSet<>();
+        this.upvotedReviews = new HashSet<>();
     }
 
     public User() {
 
         this.roles = new HashSet<>();
         this.reviews = new HashSet<>();
+        this.upvotedReviews = new HashSet<>();
     }
 
 
@@ -93,6 +97,14 @@ public class User {
 
     public void setReviews(Set<Review> reviews) { this.reviews = reviews; }
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_upvotedReviews")
+    public Set<Review> getUpvotedReviews() { return upvotedReviews; }
+
+    public void setUpvotedReviews(Set<Review> upvotedReviews) { this.upvotedReviews = upvotedReviews; }
+
+    public void addUpvotedReview(Review upvotedReview) { this.upvotedReviews.add(upvotedReview); }
+
     @Transient
     public boolean isAdmin(){
 
@@ -110,5 +122,13 @@ public class User {
     @Transient
     public int getReviewCount() {
         return this.reviews.size();
+    }
+
+    @Transient
+    public boolean hasUpvoted(Review review) {
+
+        return this.getUpvotedReviews()
+                .stream()
+                .anyMatch(targetReview -> targetReview.getId() == review.getId());
     }
 }

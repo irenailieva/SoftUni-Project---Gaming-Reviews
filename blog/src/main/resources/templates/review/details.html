@@ -18,8 +18,38 @@
                     <small class="author" th:text="${review.author.fullName}"></small>
 
                     <footer>
+                        <div class="pull-left">
+                            <h2 id="circle" style="padding-top: 7px; padding-right: 2px" class = "pull-left text-center" th:inline="text"><b>[[${review.upvoteCount}]]</b></h2>
+
+                            <h2 class="pull-right" th:inline="text" th:if="${review.upvoteCount != 1}" style="font-size: 30px; padding-left: 10px; padding-top: 8px">Upvotes</h2>
+                            <h2 class="pull-right" th:inline="text" th:if="${review.upvoteCount == 1}" style="font-size: 30px; padding-left: 10px; padding-top: 8px">Upvote</h2>
+                        </div>
 
                         <div class="pull-right" id="buttons" style="padding-top: 25px">
+                            <form  sec:authorize="isAuthenticated()"
+                                   th:if="${!user.hasUpvoted(review) AND !user.isAuthor(review)}"
+                                   class="pull-left"
+                                   style="padding-right: 3px"
+                                   th:action="@{/review/{id}(id=${review.id})}"
+                                   method="POST">
+
+                                <input class="btn btn-success btn"
+                                       type="submit"
+                                       value="UPVOTE"
+                                />
+                            </form>
+
+                            <button sec:authorize="isAuthenticated()"
+                                    th:if="${user.hasUpvoted(review)}"
+                                    class="btn btn-success btn disabled">
+                                You have upvoted this review.
+                            </button>
+
+                            <a sec:authorize="isAnonymous()"
+                               class="btn btn-primary btn"
+                               th:href="@{/login}">
+                                Login to upvote reviews.
+                            </a>
 
                             <th:block sec:authorize="isAuthenticated()" th:if="${user.isAdmin() OR user.isAuthor(review)}">
                                 <a class="btn btn-success btn" th:href="@{/review/edit/{id}(id = ${review.id})}">Edit</a>
