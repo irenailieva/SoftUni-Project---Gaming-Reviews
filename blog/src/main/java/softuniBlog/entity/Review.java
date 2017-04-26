@@ -5,6 +5,8 @@ import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "reviews")
@@ -26,6 +28,8 @@ public class Review {
 
     private int upvoteCount;
 
+    private String tags;
+
     @Transient
     public String getSummary() {
         if (this.getContent().length() > 140) {
@@ -36,7 +40,7 @@ public class Review {
         }
     }
 
-    public Review(String title, int score, String imageUrl, String content, User author, int upvoteCount) {
+    public Review(String title, int score, String imageUrl, String content, User author, int upvoteCount, String tags) {
 
         this.title = title;
         this.score = score;
@@ -45,6 +49,7 @@ public class Review {
         this.author = author;
         this.date = new Date();
         this.upvoteCount = upvoteCount;
+        this.tags = tags;
     }
 
     public Review() {}
@@ -112,5 +117,10 @@ public class Review {
     public int getUpvoteCount() { return upvoteCount; }
 
     public void setUpvoteCount(int upvoteCount) { this.upvoteCount = upvoteCount; }
+
+    @Column(name = "tags", nullable = false)
+    public String getTags() { return tags; }
+
+    public void setTags(String tags) { this.tags = tags; }
 }
 

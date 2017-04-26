@@ -1152,7 +1152,7 @@ img {
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
   display: block;
-  max-width: 100%;
+  max-width: 98%;
   height: auto;
 }
 .img-rounded {
@@ -7064,4 +7064,7 @@ article .author  {
   border-radius: 25px;
   border-color: #0d1318;
   background: gainsboro;
+}
+#my-content-left {
+  border-right: 1px solid #555555;
 }

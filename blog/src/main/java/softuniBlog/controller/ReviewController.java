@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import softuniBlog.bindingModel.ReviewBindingModel;
@@ -16,8 +15,6 @@ import softuniBlog.entity.Review;
 import softuniBlog.repository.ReviewRepository;
 import softuniBlog.repository.UserRepository;
 import softuniBlog.entity.User;
-
-import java.security.Security;
 
 @Controller
 public class ReviewController {
@@ -47,13 +44,16 @@ public class ReviewController {
 
         User userEntity = this.userRepository.findByEmail(user.getUsername());
 
+        String[] tags = reviewBindingModel.getTags().split("#");
+
         Review review = new Review(
                 reviewBindingModel.getTitle(),
                 reviewBindingModel.getScore(),
                 reviewBindingModel.getImageUrl(),
                 reviewBindingModel.getContent(),
                 userEntity,
-                0);
+                0,
+                reviewBindingModel.getTags());
 
         reviewRepository.saveAndFlush(review);
 

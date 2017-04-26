@@ -45,4 +45,19 @@ public class HomeController {
 
         return "base-layout";
     }
+
+    @GetMapping("/all-reviews-by-upvotes")
+    public String allReviewsByUpvotes(Model model) {
+
+        List<Review> allReviewsByUpvotes = this.reviewRepository.findAll();
+
+        allReviewsByUpvotes.sort(Comparator.comparing(Review::getUpvoteCount));
+
+        Collections.reverse(allReviewsByUpvotes);
+
+        model.addAttribute("view", "home/all-reviews");
+        model.addAttribute("reviews", allReviewsByUpvotes);
+
+        return "base-layout";
+    }
 }

@@ -40,7 +40,6 @@ public class User {
         this.upvotedReviews = new HashSet<>();
     }
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {

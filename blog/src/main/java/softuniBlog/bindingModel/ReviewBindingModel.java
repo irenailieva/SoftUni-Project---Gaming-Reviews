@@ -17,6 +17,9 @@ public class ReviewBindingModel {
     private String imageUrl;
 
     @NotNull
+    private String tags;
+
+    @NotNull
     private String content;
 
     public String getTitle() { return title; }
@@ -30,6 +33,10 @@ public class ReviewBindingModel {
     public String getImageUrl() { return imageUrl; }
 
     public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+
+    public String getTags() { return tags; }
+
+    public void setTags(String tags) { this.tags = tags; }
 
     public String getContent() { return content; }
 

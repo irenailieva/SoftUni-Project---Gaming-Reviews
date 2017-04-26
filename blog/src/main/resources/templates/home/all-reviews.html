@@ -1,14 +1,36 @@
 <main xmlns:th="http://www.w3.org/1999/html">
     <div class="container body-content" style="padding-top: 15px">
 
+        <div class="row">
+            <div class="col-md-6" id="my-content-left">
+                <h1 class="text-center" style="padding-bottom: 5px">Search Reviews:</h1>
+                <div class="row col-md-offset-2">
+                    <form>
+                        <input type="text" class="form-control col-md-4" id="review_tags" placeholder="Search Reviews"
+                               name="tags"/>
+                        <button class="btn btn-primary col-md-2">Search</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="text-center col-md-6">
+                <h1 class="text-center" style="padding-bottom: 5px">Order by:</h1>
+                <form class="text-center">
+                    <a class="btn btn-warning" th:href="@{/all-reviews-by-upvotes}">Most Upvotes</a>
+                    <a class="btn btn-success" th:href="@{/all-reviews}">Most Recent</a>
+                </form>
+            </div>
+
+            <div class="page-header" style="padding-top: 120px"/>
+        </div>
 
         <div class="row">
             <th:fieldset th:each="review : ${reviews}">
-                <div class="col-md-6" style="padding-top: 10px; padding-bottom: 30px">
+                <div class="col-md-6" style="padding-top: 20px; padding-bottom: 10px">
 
                     <a th:href="@{/review/{id}(id=${review.id})}">
-                       <div class="col-sm-4" style="padding-top: 5px">
-                           <img th:src="${review.imageUrl}" class="img-responsive"/>
+                       <div class="col-sm-4">
+                           <img th:src="${review.imageUrl}" class="img-responsive pull-right"/>
                        </div>
                     </a>
 
@@ -30,8 +52,7 @@
                         <small class="author" th:text="${review.author.fullName}"></small>
                     </review>
 
-                    <footer>
-
+                    <footer style="padding-top: 20px">
                         <div class="pull-right" style="padding-right: 15px">
                             <a class="btn btn-default btn-sm"
                                th:href="@{/review/{id}(id=${review.id})}">More &raquo;</a>
