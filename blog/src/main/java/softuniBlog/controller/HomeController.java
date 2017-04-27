@@ -48,7 +48,7 @@ public class HomeController {
         return "base-layout";
     }
 
-    @PostMapping("/all-reviews/{search}")
+    @GetMapping("/all-reviews/")
     public String allReviewsSearch(@RequestParam String search, Model model) {
 
         List<Review> allReviews = this.reviewRepository.findAll();
