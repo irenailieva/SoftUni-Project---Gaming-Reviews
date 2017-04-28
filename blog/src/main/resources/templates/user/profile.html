@@ -7,7 +7,7 @@
                     <h2 class="text-center" th:inline="text"><b>Hello, [[${user.fullName}]]! ([[${user.email}]])</b></h2>
 
                     <h2 class="text-center" th:if="${user.reviewCount > 1}" th:inline="text">
-                        You've published <b>[[${user.reviewCount}]]</b> reviews:
+                        You've published <b>[[${user.reviewCount}]]</b> reviews.
                     </h2>
 
                     <div class="text-center" th:if="${user.reviewCount == 0}">
@@ -17,7 +17,7 @@
                     </div>
 
                     <h2 class="text-center" th:if="${user.reviewCount == 1}" th:inline="text">
-                        You've published 1 review:
+                        You've published 1 review.
                     </h2>
 
                 </div>
@@ -44,7 +44,17 @@
                                 </a>
                                 <span style="font-size: 30px; padding-top: 3px" class="pull-right text-center" id="circle" th:inline="text"><b>[[${review.upvoteCount}]]</b></span>
                             </div>
-                            <h3 th:inline="text">[[${review.score}]] / 10</h3>
+                            <h3 th:inline="text">
+                                <span th:if="${review.score == 10}" style="font-size: 35px">★★★★★</span>
+                                <span th:if="${review.score == 9}" style="font-size: 35px">★★★★★</span>
+                                <span th:if="${review.score == 8}" style="font-size: 35px">★★★★☆</span>
+                                <span th:if="${review.score == 7}" style="font-size: 35px">★★★★☆</span>
+                                <span th:if="${review.score == 6}" style="font-size: 35px">★★★☆☆</span>
+                                <span th:if="${review.score == 5}" style="font-size: 35px">★★★☆☆</span>
+                                <span th:if="${review.score == 4}" style="font-size: 35px">★★☆☆☆</span>
+                                <span th:if="${review.score == 3}" style="font-size: 35px">★★☆☆☆</span>
+                                <span th:if="${review.score == 2}" style="font-size: 35px">★☆☆☆☆</span>
+                                <span th:if="${review.score == 1}" style="font-size: 35px">★☆☆☆☆</span></h3>
                         </header>
 
                         <p th:inline="text">
@@ -58,7 +68,7 @@
 
                         <div class="pull-right" style="padding-right: 15px">
                             <a class="btn btn-default btn-sm"
-                               th:href="@{/review/{id}(id=${review.id})}">More &raquo;</a>
+                               th:href="@{/review/{id}(id=${review.id})}">MORE ➤</a>
                         </div>
                     </footer>
 

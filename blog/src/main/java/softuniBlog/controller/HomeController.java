@@ -37,7 +37,7 @@ public class HomeController {
     }
 
     @GetMapping("/all-reviews")
-    public String allReviews(Model model) {
+    public String allReviews(@RequestParam(required = false) Integer page, Model model) {
 
         List<Review> allReviews = this.reviewRepository.findAll();
         Collections.reverse(allReviews);
