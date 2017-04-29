@@ -12,47 +12,51 @@
 
         <div class="row">
             <th:fieldset th:each="review : ${reviews}">
-
-                <div class="col-md-6" style="padding-bottom: 30px">
+                <div class="col-md-6" style="padding-top: 20px; padding-bottom: 10px">
 
                     <a th:href="@{/review/{id}(id=${review.id})}">
-                        <div class="col-sm-4" style="padding-top: 10px">
+                        <div class="col-sm-4">
                             <img th:src="${review.imageUrl}" class="img-responsive pull-right"/>
                         </div>
                     </a>
 
                     <review class="col-sm-8">
                         <header style="padding-bottom: 15px">
-                            <a th:href="@{/review/{id}(id=${review.id})}">
-                                <h2 th:text="${review.title}"></h2>
-                            </a>
+                            <div>
+                                <a th:href="@{/review/{id}(id=${review.id})}">
+                                    <span style="font-size: 30px" th:inline="text">[[${review.title}]]</span>
+                                </a>
+                                <span style="font-size: 25px; padding-top: 2px; padding-left: 5px" class="darkred-body pull-right text-center" id="circle-downvote" th:inline="text"><b>[[${review.downvoteCount}]] <br/><span style="font-size: 40px">🖓</span></b></span>
+                                <span style="font-size: 25px; padding-top: 2px; padding-left: 5px" class="darkgreen-body pull-right text-center" id="circle-upvote" th:inline="text"><b>[[${review.upvoteCount}]] <br/><span style="font-size: 40px">🖒</span></b></span>
+                            </div>
                             <h3 th:inline="text">
                                 <img th:if="${review.score == 10}" src="https://www.clker.com/cliparts/5/1/c/1/149342098821355298455-stars.med.png" class="img-responsive" style="width: 100px"/>
-                                <img th:if="${review.score == 9}" src="https://www.clker.com/cliparts/c/3/a/3/149342220817588066174.5-stars.med.png" class="img-responsive" style="width: 100px"/>
-                                <img th:if="${review.score == 8}" src="https://www.clker.com/cliparts/b/4/c/5/14934221687560176084-stars.med.png" class="img-responsive" style="width: 100px"/>
-                                <img th:if="${review.score == 7}" src="https://www.clker.com/cliparts/9/4/5/2/149342212514879476013.5-stars.med.png" class="img-responsive" style="width: 100px"/>
-                                <img th:if="${review.score == 6}" src="https://www.clker.com/cliparts/3/c/1/8/14934220775508012813-stars.med.png" class="img-responsive" style="width: 100px"/>
-                                <img th:if="${review.score == 5}" src="https://www.clker.com/cliparts/b/6/b/a/14934220253883546472.5-stars.med.png" class="img-responsive" style="width: 100px"/>
-                                <img th:if="${review.score == 4}" src="https://www.clker.com/cliparts/5/f/2/7/14934219889678125842-stars.med.png" class="img-responsive" style="width: 100px"/>
-                                <img th:if="${review.score == 3}" src="https://www.clker.com/cliparts/4/8/3/8/14934219179139725351.5-stars.med.png" class="img-responsive" style="width: 100px"/>
-                                <img th:if="${review.score == 2}" src="https://www.clker.com/cliparts/d/9/a/a/149342187417618316061-stars.med.png" class="img-responsive" style="width: 100px"/>
-                                <img th:if="${review.score == 1}" src="https://www.clker.com/cliparts/e/1/2/0/1493421826914454660.5-stars.med.png" class="img-responsive" style="width: 100px"/>
+                                <img th:if="${review.score == 9}" src="https://www.clker.com/cliparts/5/2/7/3/14934361984080440604.5-stars.med.png" class="img-responsive" style="width: 100px"/>
+                                <img th:if="${review.score == 8}" src="https://www.clker.com/cliparts/e/e/0/e/149343527111024111694-stars-test.med.png" class="img-responsive" style="width: 100px"/>
+                                <img th:if="${review.score == 7}" src="https://www.clker.com/cliparts/1/d/d/8/14934360875950103533.5-stars.med.png" class="img-responsive" style="width: 100px"/>
+                                <img th:if="${review.score == 6}" src="https://www.clker.com/cliparts/2/2/9/9/14934360596421522933-stars.med.png" class="img-responsive" style="width: 100px"/>
+                                <img th:if="${review.score == 5}" src="https://www.clker.com/cliparts/5/b/5/4/149343603616294949342.5-stars.med.png" class="img-responsive" style="width: 100px"/>
+                                <img th:if="${review.score == 4}" src="https://www.clker.com/cliparts/7/9/a/0/14934360096018083322-stars.med.png" class="img-responsive" style="width: 100px"/>
+                                <img th:if="${review.score == 3}" src="https://www.clker.com/cliparts/8/b/5/7/14934359738823413821.5-stars.med.png" class="img-responsive" style="width: 100px"/>
+                                <img th:if="${review.score == 2}" src="https://www.clker.com/cliparts/d/d/a/c/149343593313716628181-stars.med.png" class="img-responsive" style="width: 100px"/>
+                                <img th:if="${review.score == 1}" src="https://www.clker.com/cliparts/8/9/6/7/14934359056515004400.5-stars.med.png" class="img-responsive" style="width: 100px"/>
                             </h3>
                         </header>
 
-                        <p th:text="${review.summary}"></p>
+                        <p th:inline="text">
+                            [[${review.summary}]]
+                        </p>
+
+                        <small class="author" th:text="${review.author.fullName}"></small>
                     </review>
 
-                    <footer>
-                        <small class="author pull-left" style="padding-left: 12px" th:text="${review.author.fullName}"></small>
-
+                    <footer style="padding-top: 20px">
                         <div class="pull-right" style="padding-right: 15px">
                             <a class="btn btn-default btn-sm"
                                th:href="@{/review/{id}(id=${review.id})}"><b>More ➤</b></a>
                         </div>
                     </footer>
                 </div>
-
             </th:fieldset>
         </div>
     </div>

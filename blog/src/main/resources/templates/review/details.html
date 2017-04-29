@@ -13,15 +13,15 @@
                         <span style="font-size: 30px" th:inline="text"><i>[[${review.score}]] / 10&nbsp;</i>
                             <span>
                                 <img th:if="${review.score == 10}" src="https://www.clker.com/cliparts/5/1/c/1/149342098821355298455-stars.med.png" class="img-responsive" style="width: 150px"/>
-                                <img th:if="${review.score == 9}" src="https://www.clker.com/cliparts/c/3/a/3/149342220817588066174.5-stars.med.png" class="img-responsive" style="width: 150px"/>
-                                <img th:if="${review.score == 8}" src="https://www.clker.com/cliparts/b/4/c/5/14934221687560176084-stars.med.png" class="img-responsive" style="width: 150px"/>
-                                <img th:if="${review.score == 7}" src="https://www.clker.com/cliparts/9/4/5/2/149342212514879476013.5-stars.med.png" class="img-responsive" style="width: 150px"/>
-                                <img th:if="${review.score == 6}" src="https://www.clker.com/cliparts/3/c/1/8/14934220775508012813-stars.med.png" class="img-responsive" style="width: 150px"/>
-                                <img th:if="${review.score == 5}" src="https://www.clker.com/cliparts/b/6/b/a/14934220253883546472.5-stars.med.png" class="img-responsive" style="width: 150px"/>
-                                <img th:if="${review.score == 4}" src="https://www.clker.com/cliparts/5/f/2/7/14934219889678125842-stars.med.png" class="img-responsive" style="width: 150px"/>
-                                <img th:if="${review.score == 3}" src="https://www.clker.com/cliparts/4/8/3/8/14934219179139725351.5-stars.med.png" class="img-responsive" style="width: 150px"/>
-                                <img th:if="${review.score == 2}" src="https://www.clker.com/cliparts/d/9/a/a/149342187417618316061-stars.med.png" class="img-responsive" style="width: 150px"/>
-                                <img th:if="${review.score == 1}" src="https://www.clker.com/cliparts/e/1/2/0/1493421826914454660.5-stars.med.png" class="img-responsive" style="width: 150px"/>
+                                <img th:if="${review.score == 9}" src="https://www.clker.com/cliparts/5/2/7/3/14934361984080440604.5-stars.med.png" class="img-responsive" style="width: 150px"/>
+                                <img th:if="${review.score == 8}" src="https://www.clker.com/cliparts/e/e/0/e/149343527111024111694-stars-test.med.png" class="img-responsive" style="width: 150px"/>
+                                <img th:if="${review.score == 7}" src="https://www.clker.com/cliparts/1/d/d/8/14934360875950103533.5-stars.med.png" class="img-responsive" style="width: 150px"/>
+                                <img th:if="${review.score == 6}" src="https://www.clker.com/cliparts/2/2/9/9/14934360596421522933-stars.med.png" class="img-responsive" style="width: 150px"/>
+                                <img th:if="${review.score == 5}" src="https://www.clker.com/cliparts/5/b/5/4/149343603616294949342.5-stars.med.png" class="img-responsive" style="width: 150px"/>
+                                <img th:if="${review.score == 4}" src="https://www.clker.com/cliparts/7/9/a/0/14934360096018083322-stars.med.png" class="img-responsive" style="width: 150px"/>
+                                <img th:if="${review.score == 3}" src="https://www.clker.com/cliparts/8/b/5/7/14934359738823413821.5-stars.med.png" class="img-responsive" style="width: 150px"/>
+                                <img th:if="${review.score == 2}" src="https://www.clker.com/cliparts/d/d/a/c/149343593313716628181-stars.med.png" class="img-responsive" style="width: 150px"/>
+                                <img th:if="${review.score == 1}" src="https://www.clker.com/cliparts/8/9/6/7/14934359056515004400.5-stars.med.png" class="img-responsive" style="width: 150px"/>
                             </span>
                         </span>
                     </header>
@@ -53,16 +53,18 @@
                                 />
                             </form>
 
-                            <button class="btn btn-upvote btn disabled pull-left"
+                            <span class="pull-left" style="padding-right: 3px">
+                            <button class="btn btn-upvote btn disabled"
                                     sec:authorize="isAuthenticated()"
                                     th:if="${user.hasUpvoted(review)}">
                                     Upvoted
                             </button>
+                            </span>
 
                             <form  sec:authorize="isAuthenticated()"
                                    th:if="${!user.hasDownvoted(review) AND !user.isAuthor(review)}"
                                    class="pull-left"
-                                   style="padding-right: 2px; padding-left: 3px"
+                                   style="padding-right: 2px;"
                                    th:action="@{/review/{id}/downvote(id=${review.id})}"
                                    method="POST">
 
@@ -72,7 +74,7 @@
                                 />
                             </form>
 
-                            <span style="padding-right: 2px">
+                            <span style="padding-right: 1px">
                                 <button sec:authorize="isAuthenticated()"
                                         th:if="${user.hasDownvoted(review)}"
                                         class="btn btn-danger disabled">
@@ -83,7 +85,7 @@
                             <a sec:authorize="isAnonymous()"
                                class="btn btn-primary"
                                th:href="@{/login}">
-                                Login to upvote reviews.
+                                Login to assess reviews.
                             </a>
 
                             <th:block sec:authorize="isAuthenticated()" th:if="${user.isAdmin() OR user.isAuthor(review)}">
