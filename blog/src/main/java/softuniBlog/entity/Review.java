@@ -28,6 +28,8 @@ public class Review {
 
     private int upvoteCount;
 
+    private int downvoteCount;
+
     private String tags;
 
     @Transient
@@ -40,7 +42,7 @@ public class Review {
         }
     }
 
-    public Review(String title, int score, String imageUrl, String content, User author, int upvoteCount, String tags) {
+    public Review(String title, int score, String imageUrl, String content, User author, int upvoteCount, int downvoteCount, String tags) {
 
         this.title = title;
         this.score = score;
@@ -49,6 +51,7 @@ public class Review {
         this.author = author;
         this.date = new Date();
         this.upvoteCount = upvoteCount;
+        this.downvoteCount = downvoteCount;
         this.tags = tags;
     }
 
@@ -117,6 +120,11 @@ public class Review {
     public int getUpvoteCount() { return upvoteCount; }
 
     public void setUpvoteCount(int upvoteCount) { this.upvoteCount = upvoteCount; }
+
+    @Column(name = "downvoteCount")
+    public int getDownvoteCount() { return downvoteCount; }
+
+    public void setDownvoteCount(int downvoteCount) { this.downvoteCount = downvoteCount; }
 
     @Column(name = "tags", nullable = false)
     public String getTags() { return tags; }

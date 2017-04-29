@@ -23,6 +23,8 @@ public class User {
 
     private Set<Review> upvotedReviews;
 
+    private Set<Review> downvotedReviews;
+
     public User(String email, String fullName, String password) {
         this.email = email;
         this.password = password;
@@ -31,6 +33,7 @@ public class User {
         this.roles = new HashSet<>();
         this.reviews = new HashSet<>();
         this.upvotedReviews = new HashSet<>();
+        this.downvotedReviews = new HashSet<>();
     }
 
     public User() {
@@ -38,6 +41,7 @@ public class User {
         this.roles = new HashSet<>();
         this.reviews = new HashSet<>();
         this.upvotedReviews = new HashSet<>();
+        this.downvotedReviews = new HashSet<>();
     }
 
     @Id
@@ -104,6 +108,14 @@ public class User {
 
     public void addUpvotedReview(Review upvotedReview) { this.upvotedReviews.add(upvotedReview); }
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_downvotedReviews")
+    public Set<Review> getDownvotedReviews() { return downvotedReviews; }
+
+    public void setDownvotedReviews(Set<Review> downvotedReviews) { this.downvotedReviews = downvotedReviews; }
+
+    public void addDownvotedReview(Review downvotedReview) { this.downvotedReviews.add(downvotedReview); }
+
     @Transient
     public boolean isAdmin(){
 
@@ -127,6 +139,14 @@ public class User {
     public boolean hasUpvoted(Review review) {
 
         return this.getUpvotedReviews()
+                .stream()
+                .anyMatch(targetReview -> targetReview.getId() == review.getId());
+    }
+
+    @Transient
+    public boolean hasDownvoted(Review review) {
+
+        return this.getDownvotedReviews()
                 .stream()
                 .anyMatch(targetReview -> targetReview.getId() == review.getId());
     }

@@ -1119,6 +1119,20 @@ body {
   color: #2c3e50;
   background-color: #ffffff;
 }
+.darkred-body {
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.42857143;
+  color: #590000;
+  background-color: transparent;
+}
+.darkgreen-body {
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.42857143;
+  color: #0a3d00;
+  background-color: transparent;
+}
 input,
 button,
 select,
@@ -3202,25 +3216,25 @@ fieldset[disabled] .btn-primary.focus {
 .btn-success {
   color: #ffffff;
   background-color: #3498db;
-  border-color: transparent;
+  border-color: #3498db;
 }
 .btn-success:focus,
 .btn-success.focus {
   color: #ffffff;
   background-color: #217dbb;
-  border-color: transparent;
+  border-color: #217dbb;
 }
 .btn-success:hover {
   color: #ffffff;
   background-color: #217dbb;
-  border-color: transparent;
+  border-color: #217dbb;
 }
 .btn-success:active,
 .btn-success.active,
 .open > .dropdown-toggle.btn-success {
   color: #ffffff;
   background-color: #217dbb;
-  border-color: transparent;
+  border-color: #217dbb;
 }
 .btn-success:active:hover,
 .btn-success.active:hover,
@@ -3254,6 +3268,63 @@ fieldset[disabled] .btn-success.focus {
 }
 .btn-success .badge {
   color: #217dbb;
+  background-color: #ffffff;
+}
+.btn-upvote {
+  color: #ffffff;
+  background-color: #08ba26;
+  border-color: #08ba26;
+}
+.btn-upvote:focus,
+.btn-upvote.focus {
+  color: #ffffff;
+  background-color: #06991e;
+  border-color: #06991e;
+}
+.btn-upvote:hover {
+  color: #ffffff;
+  background-color: #06991e;
+  border-color: #06991e;
+}
+.btn-upvote:active,
+.btn-upvote.active,
+.open > .dropdown-toggle.btn-upvote {
+  color: #ffffff;
+  background-color: #06991e;
+  border-color: #06991e;
+}
+.btn-upvote:active:hover,
+.btn-upvote.active:hover,
+.open > .dropdown-toggle.btn-upvote:hover,
+.btn-upvote:active:focus,
+.btn-upvote.active:focus,
+.open > .dropdown-toggle.btn-upvote:focus,
+.btn-upvote:active.focus,
+.btn-upvote.active.focus,
+.open > .dropdown-toggle.btn-upvote.focus {
+  color: #ffffff;
+  background-color: #047a18;
+  border-color: #047a18;
+}
+.btn-upvote:active,
+.btn-upvote.active,
+.open > .dropdown-toggle.btn-upvote {
+  background-image: none;
+}
+.btn-upvote.disabled:hover,
+.btn-upvote[disabled]:hover,
+fieldset[disabled] .btn-upvote:hover,
+.btn-upvote.disabled:focus,
+.btn-upvote[disabled]:focus,
+fieldset[disabled] .btn-upvote:focus,
+.btn-upvote.disabled.focus,
+.btn-upvote[disabled].focus,
+fieldset[disabled] .btn-upvote.focus {
+  background-color: #06991e;
+  border-color: #06991e;
+}
+.btn-upvote .badge {
+  color: #06991e;
   background-color: #ffffff;
 }
 .btn-info {
@@ -3372,19 +3443,19 @@ fieldset[disabled] .btn-warning.focus {
 }
 .btn-danger {
   color: #ffffff;
-  background-color: #ed0707;
-  border-color: #ed0707;
+  background-color: #ff0f0f;
+  border-color: #ff0f0f;
 }
 .btn-danger:focus,
 .btn-danger.focus {
   color: #ffffff;
-  background-color: #ba0000;
-  border-color: #ba0000;
+  background-color: #c11f1f;
+  border-color: #c11f1f;
 }
 .btn-danger:hover {
   color: #ffffff;
-  background-color: #ba0000;
-  border-color: #ba0000;
+  background-color: #c11f1f;
+  border-color: #c11f1f;
 }
 .btn-danger:active,
 .btn-danger.active,
@@ -3420,11 +3491,11 @@ fieldset[disabled] .btn-danger:focus,
 .btn-danger.disabled.focus,
 .btn-danger[disabled].focus,
 fieldset[disabled] .btn-danger.focus {
-  background-color: #e74c3c;
-  border-color: #e74c3c;
+  background-color: #c11f1f;
+  border-color: #c11f1f;
 }
 .btn-danger .badge {
-  color: #ba0000;
+  color: #c11f1f;
   background-color: #ffffff;
 }
 .btn-link {
@@ -7056,15 +7127,26 @@ article .author  {
 article .author  {
   content: '\2014 \00A0';
 }
-#circle {
-  width: 50px;
-  height: 50px;
+#circle-upvote {
+  width: 40px;
+  height: 40px;
   -webkit-border-radius: 25px;
   -moz-border-radius: 25px;
   border-radius: 25px;
   border-color: #0d1318;
-  background: lightgrey;
+  background: #c5ffaa;
 }
+
+#circle-downvote {
+  width: 40px;
+  height: 40px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  border-color: #0d1318;
+  background: #ffd1d1;
+}
+
 #my-content-left {
   border-right: 1px solid #555555;
 }

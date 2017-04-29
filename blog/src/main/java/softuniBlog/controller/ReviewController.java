@@ -51,6 +51,7 @@ public class ReviewController {
                 reviewBindingModel.getContent(),
                 userEntity,
                 0,
+                0,
                 reviewBindingModel.getTags().toLowerCase());
 
         reviewRepository.saveAndFlush(review);
@@ -168,7 +169,7 @@ public class ReviewController {
         return "redirect:/";
     }
 
-    @PostMapping("review/{id}")
+    @PostMapping("review/{id}/upvote")
     public String upvoteProcess(@PathVariable int id) {
 
         UserDetails principal = (UserDetails) SecurityContextHolder.getContext()
@@ -178,8 +179,39 @@ public class ReviewController {
         User user = this.userRepository.findByEmail(principal.getUsername());
         Review review = this.reviewRepository.findOne(id);
 
+        if (user.getDownvotedReviews().contains(review)) {
+
+            user.getDownvotedReviews().remove(review);
+            review.setDownvoteCount(review.getDownvoteCount() - 1);
+        }
+
         user.addUpvotedReview(review);
         review.setUpvoteCount(review.getUpvoteCount() + 1);
+
+        this.userRepository.saveAndFlush(user);
+        this.reviewRepository.saveAndFlush(review);
+
+        return "redirect:/review/" + review.getId();
+    }
+
+    @PostMapping("review/{id}/downvote")
+    public String downvoteProcess(@PathVariable int id) {
+
+        UserDetails principal = (UserDetails) SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getPrincipal();
+
+        User user = this.userRepository.findByEmail(principal.getUsername());
+        Review review = this.reviewRepository.findOne(id);
+
+        if (user.getUpvotedReviews().contains(review)) {
+
+            user.getUpvotedReviews().remove(review);
+            review.setUpvoteCount(review.getUpvoteCount() - 1);
+        }
+
+        user.addDownvotedReview(review);
+        review.setDownvoteCount(review.getDownvoteCount() + 1);
 
         this.userRepository.saveAndFlush(user);
         this.reviewRepository.saveAndFlush(review);

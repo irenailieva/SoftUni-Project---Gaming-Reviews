@@ -37,24 +37,26 @@
                     </a>
 
                     <review class="col-sm-8">
-                        <header>
+                        <header style="padding-bottom: 15px">
                             <div>
                                 <a th:href="@{/review/{id}(id=${review.id})}">
                                     <span style="font-size: 30px" th:inline="text">[[${review.title}]]</span>
                                 </a>
-                                <span style="font-size: 30px; padding-top: 3px" class="pull-right text-center" id="circle" th:inline="text"><b>[[${review.upvoteCount}]]</b></span>
+                                <span style="font-size: 25px; padding-top: 2px" class="pull-right text-center" id="circle-downvote" th:inline="text"><b>[[${review.downvoteCount}]]</b></span>
+                                <span style="font-size: 25px; padding-top: 2px" class="pull-right text-center" id="circle-upvote" th:inline="text"><b>[[${review.upvoteCount}]]</b></span>
                             </div>
                             <h3 th:inline="text">
-                                <span th:if="${review.score == 10}" style="font-size: 35px">★★★★★</span>
-                                <span th:if="${review.score == 9}" style="font-size: 35px">★★★★★</span>
-                                <span th:if="${review.score == 8}" style="font-size: 35px">★★★★☆</span>
-                                <span th:if="${review.score == 7}" style="font-size: 35px">★★★★☆</span>
-                                <span th:if="${review.score == 6}" style="font-size: 35px">★★★☆☆</span>
-                                <span th:if="${review.score == 5}" style="font-size: 35px">★★★☆☆</span>
-                                <span th:if="${review.score == 4}" style="font-size: 35px">★★☆☆☆</span>
-                                <span th:if="${review.score == 3}" style="font-size: 35px">★★☆☆☆</span>
-                                <span th:if="${review.score == 2}" style="font-size: 35px">★☆☆☆☆</span>
-                                <span th:if="${review.score == 1}" style="font-size: 35px">★☆☆☆☆</span></h3>
+                                <img th:if="${review.score == 10}" src="https://www.clker.com/cliparts/5/1/c/1/149342098821355298455-stars.med.png" class="img-responsive" style="width: 100px"/>
+                                <img th:if="${review.score == 9}" src="https://www.clker.com/cliparts/c/3/a/3/149342220817588066174.5-stars.med.png" class="img-responsive" style="width: 100px"/>
+                                <img th:if="${review.score == 8}" src="https://www.clker.com/cliparts/b/4/c/5/14934221687560176084-stars.med.png" class="img-responsive" style="width: 100px"/>
+                                <img th:if="${review.score == 7}" src="https://www.clker.com/cliparts/9/4/5/2/149342212514879476013.5-stars.med.png" class="img-responsive" style="width: 100px"/>
+                                <img th:if="${review.score == 6}" src="https://www.clker.com/cliparts/3/c/1/8/14934220775508012813-stars.med.png" class="img-responsive" style="width: 100px"/>
+                                <img th:if="${review.score == 5}" src="https://www.clker.com/cliparts/b/6/b/a/14934220253883546472.5-stars.med.png" class="img-responsive" style="width: 100px"/>
+                                <img th:if="${review.score == 4}" src="https://www.clker.com/cliparts/5/f/2/7/14934219889678125842-stars.med.png" class="img-responsive" style="width: 100px"/>
+                                <img th:if="${review.score == 3}" src="https://www.clker.com/cliparts/4/8/3/8/14934219179139725351.5-stars.med.png" class="img-responsive" style="width: 100px"/>
+                                <img th:if="${review.score == 2}" src="https://www.clker.com/cliparts/d/9/a/a/149342187417618316061-stars.med.png" class="img-responsive" style="width: 100px"/>
+                                <img th:if="${review.score == 1}" src="https://www.clker.com/cliparts/e/1/2/0/1493421826914454660.5-stars.med.png" class="img-responsive" style="width: 100px"/>
+                            </h3>
                         </header>
 
                         <p th:inline="text">
@@ -68,7 +70,7 @@
 
                         <div class="pull-right" style="padding-right: 15px">
                             <a class="btn btn-default btn-sm"
-                               th:href="@{/review/{id}(id=${review.id})}">MORE ➤</a>
+                               th:href="@{/review/{id}(id=${review.id})}"><b>More ➤</b></a>
                         </div>
                     </footer>
 
